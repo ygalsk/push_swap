@@ -6,7 +6,7 @@
 /*   By: dkremer <dkremer@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 18:36:43 by dkremer           #+#    #+#             */
-/*   Updated: 2024/04/19 20:20:12 by dkremer          ###   ########.fr       */
+/*   Updated: 2024/04/20 16:32:43 by dkremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,16 @@ typedef struct s_list
 	struct s_list	*prev;
 }					t_list;
 
-bool	is_sorted(t_list **stack);
-void	free_list(char **str);
-void	error(void);
-void	free_stack(t_list **stack);
-void	free_stacks(t_list **a, t_list **b);
+bool				is_sorted(t_list **stack);
+void				free_list(char **str);
+void				error(void);
+void				free_stack(t_list **stack);
+void				free_stacks(t_list **a, t_list **b);
+t_list				*ft_lstnew(int value);
+void				ft_lstadd_front(t_list **stack, t_list *new);
+t_list				*ft_lstlast(t_list *head);
+void				ft_lstadd_back(t_list **stack, t_list *new);
+int					ft_listsize(t_list *head);
+void				print_list(t_list *head);
 
 #endif // !PUSH_SWAP_H
