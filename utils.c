@@ -6,7 +6,7 @@
 /*   By: dkremer <dkremer@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 18:45:35 by dkremer           #+#    #+#             */
-/*   Updated: 2024/04/09 20:31:12 by dkremer          ###   ########.fr       */
+/*   Updated: 2024/04/19 15:49:50 by dkremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,10 @@ void	free_stack(t_list **stack)
 		free(temp);
 	}
 	free(stack);
+}
+
+void	free_stacks(t_list **a, t_list **b)
+{
+	free_stack(a);
+	free_stack(b);
 }
