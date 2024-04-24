@@ -49,11 +49,13 @@ int	main(int argc, char **argv)
 	(void)argv;
 	if (argc <= 2)
 		return (0);
+	ft_check_args(argc, argv);
 	a = ft_calloc(1, sizeof(t_list));
 	b = ft_calloc(1, sizeof(t_list));
 	*a = NULL;
 	*b = NULL;
 	init_stacks(a, argc, argv);
+	print_list(*a);
 	if (is_sorted(a))
 	{
 		free_stacks(a, b);

@@ -34,5 +34,8 @@ t_list				*ft_lstlast(t_list *head);
 void				ft_lstadd_back(t_list **stack, t_list *new);
 int					ft_listsize(t_list *head);
 void				print_list(t_list *head);
+int  ft_isnum(char *num);
+int  ft_contains(int num, char **args, int i);
+void	ft_check_args(int argc, char **argv);
 
 #endif // !PUSH_SWAP_H
