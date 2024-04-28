@@ -61,6 +61,8 @@ int	main(int argc, char **argv)
 		free_stacks(a, b);
 		return (0);
 	}
+	ra(a);
+	print_list(*a);
 	free_stacks(a, b);
 	return (0);
 }

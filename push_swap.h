@@ -38,5 +38,20 @@ void				print_list(t_list *head);
 //int  ft_contains(int num, char **args, int i);
 void	ft_check_args(int argc, char **argv);
 void    lst_addback(t_list **root, int value);
+int swap(t_list **stack);
+int sa(t_list **stack_a);
+int sb(t_list **stack_b);
+int ss(t_list **stack_a, t_list **stack_b);
+int rotate(t_list **stack);
+int ra(t_list **stack_a);
+int rb(t_list **stack_b);
+int rr(t_list **stack_a, t_list **stack_b);
+int reverse_rotate(t_list **stack);
+int rra(t_list **stack_a);
+int rrb(t_list **stack_b);
+int rrr(t_list **stack_a, t_list **stack_b);
+int push(t_list **stack_to, t_list **stack_from);
+int pa(t_list **stack_a, t_list **stack_b);
+int pb(t_list **stack_a, t_list **stack_b);
 
 #endif // !PUSH_SWAP_H
