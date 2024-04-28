@@ -3,89 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dkremer <dkremer@student.42heilbronn.de>   +#+  +:+       +#+        */
+/*   By: dkremer <dkremer@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/09 19:55:05 by dkremer           #+#    #+#             */
-/*   Updated: 2024/04/20 16:32:43 by dkremer          ###   ########.fr       */
+/*   Created: 2024/04/28 15:07:38 by dkremer           #+#    #+#             */
+/*   Updated: 2024/04/28 15:07:38 by dkremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*ft_lstnew(int value)
+void lst_addfront(t_list **root, int value)
 {
-	t_list	*new;
-
-	new = (t_list *)calloc(1, sizeof(*new));
-	if (!new)
-		return (NULL);
-	new->value = value;
-	new->index = -1;
-	new->next = NULL;
-	return (new);
+    t_list *new;
+    new = (t_list *)ft_calloc(1, sizeof(t_list));
+    if (!new)
+        error();
+    new->value = value;
+    new->next = *root;
+    *root = new;
 }
 
-void	ft_lstadd_front(t_list **stack, t_list *new)
+void    lst_addback(t_list **root, int value)
 {
-	new->next = *stack;
-	*stack = new;
-}
+    t_list  *new;
+    t_list  *curr;
 
-t_list	*ft_lstlast(t_list *head)
-{
-	t_list	*temp;
-
-	temp = head;
-	while (temp->next)
-	{
-		temp = temp->next;
-		if (temp->next == NULL)
-			return (temp);
-	}
-	return (temp);
-}
-
-void	ft_lstadd_back(t_list **stack, t_list *new)
-{
-	t_list	*n;
-
-	if (*stack)
-	{
-		n = ft_lstlast(*stack);
-		n->next = new;
-		new->next = NULL;
-	}
-	else
-	{
-		*stack = new;
-		(*stack)->next = NULL;
-	}
-}
-
-int	ft_listsize(t_list *head)
-{
-	size_t	i;
-	t_list	*temp;
-
-	temp = head;
-	i = 0;
-	while (temp)
-	{
-		temp = temp->next;
-		i++;
-	}
-	return (i);
-}
-
-void	print_list(t_list *head)
-{
-	t_list	*temp;
-
-	temp = head;
-	while (temp)
-	{
-		ft_putnbr_fd(temp->value, 1);
-		ft_putendl_fd("", 1);
-		temp = temp->next;
-	}
+    new = (t_list *)ft_calloc(1, sizeof(t_list));
+    if (!new)
+        error();
+    new->next = NULL;
+    new->value = value;
+    curr = *root;
+    while (curr->next)
+        curr = curr->next;
+    curr->next = new;
 }
