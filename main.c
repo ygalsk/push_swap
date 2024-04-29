@@ -41,6 +41,14 @@ static void	init_stacks(t_list **a, int argc, char **argv)
 	}
 }
 
+static void	sort(t_list **a, t_list **b)
+{
+	if (ft_listsize(*a) <= 5)
+		simple_sort(a, b);
+	//else
+	//	algo(a, b);
+}
+
 int	main(int argc, char **argv)
 {
 	t_list	**a;
@@ -61,7 +69,7 @@ int	main(int argc, char **argv)
 		free_stacks(a, b);
 		return (0);
 	}
-	ra(a);
+	sort(a, b);
 	print_list(*a);
 	free_stacks(a, b);
 	return (0);

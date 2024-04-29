@@ -53,5 +53,8 @@ int rrr(t_list **stack_a, t_list **stack_b);
 int push(t_list **stack_to, t_list **stack_from);
 int pa(t_list **stack_a, t_list **stack_b);
 int pb(t_list **stack_a, t_list **stack_b);
+int	get_distance(t_list **stack, int index);
+void	stack_index(t_list **stack);
+void    simple_sort(t_list **a, t_list **b);
 
 #endif // !PUSH_SWAP_H
