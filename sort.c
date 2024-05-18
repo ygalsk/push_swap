@@ -6,7 +6,7 @@
 /*   By: dkremer <dkremer@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 15:36:02 by dkremer           #+#    #+#             */
-/*   Updated: 2024/05/18 17:17:36 by dkremer          ###   ########.fr       */
+/*   Updated: 2024/05/18 17:19:29 by dkremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,42 @@ void	move_b(t_list **a, t_list **b)
 	}
 	finish_rotation_b(a, b, cheap);
 	pb(a, b);
+}
+
+void	finish_rotation_a(t_list **a, t_list **b, t_list *cheap)
+{
+	while (cheap->target != *a)
+	{
+		if (cheap->target->a_med)
+			ra(a);
+		else
+			rra(a);
+	}
+	while (cheap != *b)
+	{
+		if (cheap->a_med)
+			rb(b);
+		else
+			rrb(b);
+	}
+}
+
+void	finish_rotation_b(t_list **a, t_list **b, t_list *cheap)
+{
+	while (cheap->target != *b)
+	{
+		if (cheap->target->a_med)
+			rb(a);
+		else
+			rrb(a);
+	}
+	while (cheap != *a)
+	{
+		if (cheap->a_med)
+			ra(b);
+		else
+			rra(b);
+	}
 }
 
 void	fast_sort(t_list **a, t_list **b)
