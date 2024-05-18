@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list.c                                             :+:      :+:    :+:   */
+/*   list2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkremer <dkremer@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 19:55:05 by dkremer           #+#    #+#             */
-/*   Updated: 2024/04/20 16:32:43 by dkremer          ###   ########.fr       */
+/*   Updated: 2024/05/17 16:45:42 by dkremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <sys/wait.h>
 
 t_list	*ft_lstnew(int value)
 {
@@ -23,12 +24,6 @@ t_list	*ft_lstnew(int value)
 	new->index = -1;
 	new->next = NULL;
 	return (new);
-}
-
-void	ft_lstadd_front(t_list **stack, t_list *new)
-{
-	new->next = *stack;
-	*stack = new;
 }
 
 t_list	*ft_lstlast(t_list *head)
@@ -45,19 +40,19 @@ t_list	*ft_lstlast(t_list *head)
 	return (temp);
 }
 
-void	ft_lstadd_back(t_list **stack, t_list *new)
+void	ft_lstadd_back(t_list **stack, t_list *new_node)
 {
 	t_list	*n;
 
 	if (*stack)
 	{
 		n = ft_lstlast(*stack);
-		n->next = new;
-		new->next = NULL;
+		n->next = new_node;
+		new_node->next = NULL;
 	}
 	else
 	{
-		*stack = new;
+		*stack = new_node;
 		(*stack)->next = NULL;
 	}
 }
@@ -88,4 +83,36 @@ void	print_list(t_list *head)
 		ft_putendl_fd("", 1);
 		temp = temp->next;
 	}
+}
+
+t_list	*biggest(t_list *stack)
+{
+	t_list	*big;
+
+	if (!stack)
+		return (NULL);
+	if (stack)
+		big = stack;
+	while (stack)
+	{
+		if (stack->value > big->value)
+			big = stack;
+		stack = stack->next;
+	}
+	return (big);
+}
+
+t_list	*smallest(t_list *stack)
+{
+	t_list	*small;
+
+	if (stack)
+		small = stack;
+	while (stack)
+	{
+		if (stack->value < small->value)
+			small = stack;
+		stack = stack->next;
+	}
+	return (small);
 }
