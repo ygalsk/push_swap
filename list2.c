@@ -6,18 +6,17 @@
 /*   By: dkremer <dkremer@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 19:55:05 by dkremer           #+#    #+#             */
-/*   Updated: 2024/05/17 16:45:42 by dkremer          ###   ########.fr       */
+/*   Updated: 2024/05/30 14:43:06 by dkremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <sys/wait.h>
 
 t_list	*ft_lstnew(int value)
 {
 	t_list	*new;
 
-	new = (t_list *)calloc(1, sizeof(*new));
+	new = (t_list *)ft_calloc(1, sizeof(*new));
 	if (!new)
 		return (NULL);
 	new->value = value;
@@ -83,36 +82,4 @@ void	print_list(t_list *head)
 		ft_putendl_fd("", 1);
 		temp = temp->next;
 	}
-}
-
-t_list	*biggest(t_list *stack)
-{
-	t_list	*big;
-
-	if (!stack)
-		return (NULL);
-	if (stack)
-		big = stack;
-	while (stack)
-	{
-		if (stack->value > big->value)
-			big = stack;
-		stack = stack->next;
-	}
-	return (big);
-}
-
-t_list	*smallest(t_list *stack)
-{
-	t_list	*small;
-
-	if (stack)
-		small = stack;
-	while (stack)
-	{
-		if (stack->value < small->value)
-			small = stack;
-		stack = stack->next;
-	}
-	return (small);
 }

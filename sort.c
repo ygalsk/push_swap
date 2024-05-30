@@ -6,7 +6,7 @@
 /*   By: dkremer <dkremer@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 15:36:02 by dkremer           #+#    #+#             */
-/*   Updated: 2024/05/18 17:47:37 by dkremer          ###   ########.fr       */
+/*   Updated: 2024/05/19 17:24:43 by dkremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,21 +113,23 @@ void	finish_rotation_b(t_list **a, t_list **b, t_list *cheap)
 void	fast_sort(t_list **a, t_list **b)
 {
 	t_list	*smallest_node;
-	int		len_a;
-
-	len_a = ft_listsize(*a);
-	if (len_a == 5)
-		handle_5(a, b);
-	else
-	{
-		while (len_a > 3)
-		{
-			pb(a, b);
-			len_a--;
-		}
-	}
-	if (!is_sorted(a))
-		sort_3(a);
+	// int		len_a;
+	//
+	// len_a = ft_listsize(*a);
+	// if (len_a == 5)
+	// 	handle_5(a, b);
+	// else
+	// {
+	// 	while (len_a > 3)
+	// 	{
+	// 		pb(a, b);
+	// 		len_a--;
+	// 	}
+	// }
+	// if (!is_sorted(a))
+	// 	sort_3(a);
+	// pb(a, b);
+	pb(a, b);
 	while (ft_listsize(*a) > 1)
 	{
 		init_nodes_a(*a, *b);

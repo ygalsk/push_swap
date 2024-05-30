@@ -6,7 +6,7 @@
 /*   By: dkremer <dkremer@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 15:06:26 by dkremer           #+#    #+#             */
-/*   Updated: 2024/05/18 17:14:45 by dkremer          ###   ########.fr       */
+/*   Updated: 2024/05/30 14:43:37 by dkremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,34 +108,4 @@ void	get_price_b(t_list *a, t_list *b)
 			a->price += len_a - (a->target->index);
 		a = a->next;
 	}
-}
-
-t_list	*cheapest(t_list *b)
-{
-	t_list	*best_node;
-
-	best_node = b;
-	while (b)
-	{
-		if (b->price < best_node->price)
-			best_node = b;
-		b = b->next;
-	}
-	return (best_node);
-}
-
-void	init_nodes_a(t_list *a, t_list *b)
-{
-	init_index(a);
-	init_index(b);
-	set_target_a(a, b);
-	get_price_b(a, b);
-}
-
-void	init_nodes_b(t_list *a, t_list *b)
-{
-	init_index(a);
-	init_index(b);
-	set_target_b(a, b);
-	get_price_a(a, b);
 }
