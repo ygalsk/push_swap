@@ -6,7 +6,7 @@
 /*   By: dkremer <dkremer@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:00:06 by dkremer           #+#    #+#             */
-/*   Updated: 2024/05/17 15:29:54 by dkremer          ###   ########.fr       */
+/*   Updated: 2024/05/30 14:51:02 by dkremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,30 @@ void	ft_check_args(int argc, char **argv)
 	}
 	if (argc == 2)
 		free_list(args);
+}
+
+long	ft_atol(const char *str)
+{
+	int		i;
+	int		sgn;
+	long	res;
+
+	i = 0;
+	sgn = 1;
+	res = 0;
+	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t'
+		|| str[i] == '\r' || str[i] == '\v' || str[i] == '\f')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sgn = -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		res = (res * 10) + (str[i] - '0');
+		i++;
+	}
+	return (res * sgn);
 }
