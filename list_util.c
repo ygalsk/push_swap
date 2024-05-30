@@ -6,7 +6,7 @@
 /*   By: dkremer <dkremer@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 19:55:05 by dkremer           #+#    #+#             */
-/*   Updated: 2024/05/30 14:43:06 by dkremer          ###   ########.fr       */
+/*   Updated: 2024/05/30 14:55:03 by dkremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,16 @@ int	ft_listsize(t_list *head)
 	return (i);
 }
 
-void	print_list(t_list *head)
+bool	is_sorted(t_list **stack)
 {
-	t_list	*temp;
+	t_list	*head;
 
-	temp = head;
-	while (temp)
+	head = *stack;
+	while (head && head->next)
 	{
-		ft_putnbr_fd(temp->value, 1);
-		ft_putendl_fd("", 1);
-		temp = temp->next;
+		if (head->value > head->next->value)
+			return (false);
+		head = head->next;
 	}
+	return (true);
 }
