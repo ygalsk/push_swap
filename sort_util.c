@@ -6,7 +6,7 @@
 /*   By: dkremer <dkremer@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 15:06:26 by dkremer           #+#    #+#             */
-/*   Updated: 2024/05/30 14:43:37 by dkremer          ###   ########.fr       */
+/*   Updated: 2024/05/30 14:52:58 by dkremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,26 @@ void	get_price_b(t_list *a, t_list *b)
 		else
 			a->price += len_a - (a->target->index);
 		a = a->next;
+	}
+}
+
+void	init_index(t_list *stack)
+{
+	int	index;
+	int	median;
+
+	index = 0;
+	if (!stack)
+		return ;
+	median = ft_listsize(stack) / 2;
+	while (stack)
+	{
+		stack->index = index;
+		if (index <= median)
+			stack->a_med = true;
+		else
+			stack->a_med = false;
+		stack = stack->next;
+		index++;
 	}
 }
