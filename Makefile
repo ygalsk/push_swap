@@ -17,16 +17,17 @@ NAME     = push_swap
 CC       = cc
 CFLAGS   = -Wall -Werror -Wextra -g
 
+# Source and object directories
+BINDIR   = bin
+
 # Source files
 SRCS     = $(wildcard ./*.c)
 
+# Object files
+OBJS     = $(SRCS:./%.c=$(BINDIR)/%.o)
+
 # Header files
 HEADER  = libft/libft.a
-
-# Object files
-OBJS     = $(SRCS:.c=.o)
-
-OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
 # Default target
 all: $(NAME)
@@ -37,23 +38,28 @@ $(NAME): $(OBJS) $(HEADER)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(HEADER)
 	echo $(GREEN)"Building $(NAME)"$(DEFAULT);
 
-%.o: %.c
+# Rule to compile source files to object files in the bin directory
+$(BINDIR)/%.o: ./%.c | $(BINDIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-#Linking libft
+# Create the bin directory if it does not exist
+$(BINDIR):
+	mkdir -p $(BINDIR)
+
+# Linking libft
 $(HEADER):
 	make -C libft
 
 # Remove all object files
 clean:
-	rm -f $(OBJS)
+	rm -f $(BINDIR)/*.o
 	make -C libft clean
 	echo $(RED)"Removing $(NAME) object files"$(DEFAULT);
 
 # Remove all files
 fclean: clean
 	rm -f $(NAME)
-	rm -rf MLX42
+	rm -rf $(BINDIR)
 	make -C libft fclean
 	echo $(RED)"Removing $(NAME)"$(DEFAULT);
 
@@ -61,7 +67,6 @@ fclean: clean
 re: fclean all
 	echo $(GREEN)"Rebuilding everything"$(DEFAULT);
 
-re_bonus: fclean bonus
 .PHONY: all clean fclean re
 
 # Colours

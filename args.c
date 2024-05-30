@@ -6,7 +6,7 @@
 /*   By: dkremer <dkremer@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:00:06 by dkremer           #+#    #+#             */
-/*   Updated: 2024/05/30 14:51:02 by dkremer          ###   ########.fr       */
+/*   Updated: 2024/05/30 18:17:12 by dkremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	ft_check_args(int argc, char **argv)
 		if (!ft_isnum(args[i]))
 			error();
 		if (ft_contains(tmp, args, i))
-			error();
+			free_and_error(args);
 		if (tmp < -2147483648 || tmp > 2147483647)
 			error();
 		i++;
