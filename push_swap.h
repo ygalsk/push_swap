@@ -6,7 +6,7 @@
 /*   By: dkremer <dkremer@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 18:36:43 by dkremer           #+#    #+#             */
-/*   Updated: 2024/05/17 16:47:56 by dkremer          ###   ########.fr       */
+/*   Updated: 2024/05/30 15:54:15 by dkremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ t_list				*smallest(t_list *stack);
 t_list				*biggest(t_list *stack);
 void				init_index(t_list *stack);
 void				move_a(t_list **a, t_list **b);
-void				move_a(t_list **a, t_list **b);
+void				move_b(t_list **a, t_list **b);
 void				finish_rotation_a(t_list **a, t_list **b, t_list *cheap);
 void				finish_rotation_b(t_list **a, t_list **b, t_list *cheap);
 

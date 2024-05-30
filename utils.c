@@ -6,12 +6,11 @@
 /*   By: dkremer <dkremer@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 18:45:35 by dkremer           #+#    #+#             */
-/*   Updated: 2024/05/17 16:51:24 by dkremer          ###   ########.fr       */
+/*   Updated: 2024/05/30 15:04:08 by dkremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdlib.h>
 
 void	error(void)
 {
@@ -27,20 +26,6 @@ void	free_list(char **str)
 	while (str[i])
 		free(str[i++]);
 	free(str);
-}
-
-bool	is_sorted(t_list **stack)
-{
-	t_list	*head;
-
-	head = *stack;
-	while (head && head->next)
-	{
-		if (head->value > head->next->value)
-			return (false);
-		head = head->next;
-	}
-	return (true);
 }
 
 void	free_stack(t_list **stack)
