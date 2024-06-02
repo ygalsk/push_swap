@@ -6,7 +6,7 @@
 /*   By: dkremer <dkremer@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 18:36:43 by dkremer           #+#    #+#             */
-/*   Updated: 2024/05/30 16:18:06 by dkremer          ###   ########.fr       */
+/*   Updated: 2024/06/02 03:52:23 by dkremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void				free_list(char **str);
 void				free_stack(t_list **stack);
 void				free_stacks(t_list **a, t_list **b);
 void				free_and_error(char **str);
+void	check_error(int argc, char **str);
 
 // Instructions
 

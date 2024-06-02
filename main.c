@@ -6,7 +6,7 @@
 /*   By: dkremer <dkremer@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 14:54:37 by dkremer           #+#    #+#             */
-/*   Updated: 2024/05/17 16:50:41 by dkremer          ###   ########.fr       */
+/*   Updated: 2024/06/02 03:49:14 by dkremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,28 @@
 static void	init_stacks(t_list **a, int argc, char **argv)
 {
 	t_list	*new;
-	char	**args;
+	char	*arg;
 	int		i;
-	int		j;
+	int		start;
+	int		end;
 
 	i = 1;
 	while (i < argc)
 	{
-		args = ft_split(argv[i], ' ');
-		if (!args)
+		arg = argv[i];
+		if (arg[0] == '\"')
 		{
-			free_list(args);
-			error();
+			start = 1;
+			end = strlen(arg) - 1;
+			arg[end] = '\0'; // Remove the ending quote
 		}
-		j = 0;
-		while (args[j])
+		else
 		{
-			new = ft_lstnew(ft_atol(args[j]));
-			ft_lstadd_back(a, new);
-			j++;
+			start = 0;
+			end = strlen(arg);
 		}
-		free_list(args);
+		new = ft_lstnew(ft_atol(&arg[start]));
+		ft_lstadd_back(a, new);
 		i++;
 	}
 }

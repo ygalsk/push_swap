@@ -6,7 +6,7 @@
 /*   By: dkremer <dkremer@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:00:06 by dkremer           #+#    #+#             */
-/*   Updated: 2024/05/30 18:17:12 by dkremer          ###   ########.fr       */
+/*   Updated: 2024/06/02 03:54:39 by dkremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ void	ft_check_args(int argc, char **argv)
 	{
 		tmp = ft_atol(args[i]);
 		if (!ft_isnum(args[i]))
-			error();
+			check_error(argc, args);
 		if (ft_contains(tmp, args, i))
-			free_and_error(args);
+			check_error(argc, args);
 		if (tmp < -2147483648 || tmp > 2147483647)
-			error();
+			check_error(argc, args);
 		i++;
 	}
 	if (argc == 2)
@@ -93,4 +93,11 @@ long	ft_atol(const char *str)
 		i++;
 	}
 	return (res * sgn);
+}
+
+void	check_error(int argc, char **str)
+{
+	if (argc > 2)
+		error();
+	free_and_error(str);
 }
