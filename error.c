@@ -1,44 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkremer <dkremer@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/09 18:45:35 by dkremer           #+#    #+#             */
+/*   Created: 2024/06/02 11:49:10 by dkremer           #+#    #+#             */
 /*   Updated: 2024/06/02 11:50:33 by dkremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_list(char **str)
+void	error(void)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-		free(str[i++]);
-	free(str);
+	ft_putendl_fd("Error", 2);
+	exit(1);
 }
 
-void	free_stack(t_list **stack)
+void	free_and_error(char **str)
 {
-	t_list	*head;
-	t_list	*temp;
-
-	head = *stack;
-	while (head)
-	{
-		temp = head;
-		head = head->next;
-		free(temp);
-	}
-	free(stack);
+	free_list(str);
+	error();
 }
 
-void	free_stacks(t_list **a, t_list **b)
+void	check_error(int argc, char **str)
 {
-	free_stack(a);
-	free_stack(b);
+	if (argc > 2)
+		error();
+	free_and_error(str);
 }

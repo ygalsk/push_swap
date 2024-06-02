@@ -6,7 +6,7 @@
 /*   By: dkremer <dkremer@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:00:06 by dkremer           #+#    #+#             */
-/*   Updated: 2024/06/02 03:54:39 by dkremer          ###   ########.fr       */
+/*   Updated: 2024/06/02 11:51:52 by dkremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,11 @@ static int	ft_isnum(char *num)
 
 	i = 0;
 	if (num[0] == '-')
+	{
 		i++;
+		if (!num[i])
+			return (0);
+	}
 	while (num[i])
 	{
 		if (!ft_isdigit(num[i]))
@@ -40,11 +44,31 @@ static int	ft_isnum(char *num)
 	return (1);
 }
 
+void	ft_validate_args(int argc, char **args, char **sub_args, int i)
+{
+	int		j;
+	long	tmp;
+
+	j = 0;
+	while (sub_args[j])
+	{
+		tmp = ft_atol(sub_args[j]);
+		if (!ft_isnum(sub_args[j]) || ft_contains(tmp, args, i) || \
+				tmp < -2147483648 || tmp > 2147483647)
+		{
+			free_list(sub_args);
+			check_error(argc, args);
+		}
+		j++;
+	}
+	free_list(sub_args);
+}
+
 void	ft_check_args(int argc, char **argv)
 {
 	int		i;
-	long	tmp;
 	char	**args;
+	char	**sub_args;
 
 	i = 0;
 	if (argc == 2)
@@ -56,13 +80,11 @@ void	ft_check_args(int argc, char **argv)
 	}
 	while (args[i])
 	{
-		tmp = ft_atol(args[i]);
-		if (!ft_isnum(args[i]))
-			check_error(argc, args);
-		if (ft_contains(tmp, args, i))
-			check_error(argc, args);
-		if (tmp < -2147483648 || tmp > 2147483647)
-			check_error(argc, args);
+		sub_args = ft_split(args[i], ' ');
+		if (!sub_args)
+			check_error(argc, sub_args);
+		else
+			ft_validate_args(argc, args, sub_args, i);
 		i++;
 	}
 	if (argc == 2)
@@ -93,11 +115,4 @@ long	ft_atol(const char *str)
 		i++;
 	}
 	return (res * sgn);
-}
-
-void	check_error(int argc, char **str)
-{
-	if (argc > 2)
-		error();
-	free_and_error(str);
 }
